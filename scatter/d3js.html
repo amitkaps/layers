@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+  <head>
+    <meta charset="utf-8">
+    <script src="../lib/d3.min.js"></script>
+
+		<style>
+			.axis path,
+			.axis line {
+				fill: none;
+				stroke: black;
+				shape-rendering: crispEdges;
+			}
+
+			.axis text {
+				font-family: sans-serif;
+				font-size: 11px;
+			}
+		</style>
+	</head>
+
+	<body>
+		<script>
+			//LOAD THE DATA
+			d3.csv("../data/dlarge.csv", function(dataset) {
+				dataset.forEach(function(d) {
+			    d.carat = +d.carat;
+			    d.depth = +d.depth;
+			    d.price = +d.price;
+			    d.table = +d.table;
+			    d.x = +d.x;
+			    d.y = +d.y;
+			    d.z = +d.z;
+			  });
+
+			// SETUP VARIABLES
+			var w = 800;
+			var h = 600;
+			var padding = 30;
+
+			// CALCULATE SCALES - X, Y & COLOR
+			var xScale = d3.scale.linear()
+			              .domain([d3.min(dataset, function(d) {return d.carat}),
+										         d3.max(dataset, function(d) {return d.carat; })])
+			              .range([padding, w - padding]);
+
+			var yScale = d3.scale.linear()
+			            .domain([d3.min(dataset, function(d) {return d.price;}),
+									         d3.max(dataset, function(d) {return d.price;})])
+			            .range([h - padding, padding]);
+
+			var fill = d3.scale.category10()
+
+
+			// DRAW THE PLOT AREA
+			var svg = d3.select("body")
+			            .append("svg")
+			            .attr("width", w)
+			            .attr("height", h);
+
+
+			// DRAW THE POINTS
+			svg.selectAll("circle")
+			   .data(dataset)
+			   .enter()
+			   .append("circle")
+			   .attr("cx", function(d) {
+			        return xScale(d.carat);})
+			   .attr("cy", function(d) {
+			        return yScale(d.price);})
+			   .attr("r", 5)
+         .style("fill-opacity", 0.5)
+			   .style("fill", function(d) {
+					return fill(d.color)});
+
+
+			// ADD THE SCALES - X & Y
+			var yAxis = d3.svg.axis().scale(yScale).orient("left")
+
+			svg.append("g")
+			    .attr("class", "axis")
+			    .attr("transform", "translate(" + padding + ",0)")
+			    .call(yAxis);
+
+
+			var xAxis = d3.svg.axis().scale(xScale).orient("bottom");
+
+			svg.append("g")
+				.attr("class", "axis")
+				.attr("transform", "translate(0," + (h - padding) + ")")
+				.call(xAxis);
+
+			});
+
+
+		</script>
+
+	</body>
+</html>
