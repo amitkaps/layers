@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+
+  <head>
+    <meta charset="utf-8">
+
+    <script src="../lib/d3.min.js"></script>
+    <script src="http://vega.github.io/vega-lite/editor/bower_components/vega/vega.js"></script>
+  </head>
+
+  <body>
+    <div id="vis"></div>
+
+    <script type="text/javascript">
+      function parse(spec) {
+        vg.parse.spec(spec, function(chart) {
+          chart({el:"#vis"}).update(); });
+      }
+      parse(
+        {"width":210,"height":200,"padding":"auto","data":[{"name":"raw","values":[{"a":"A","b":28},{"a":"B","b":55},{"a":"C","b":43},{"a":"D","b":91},{"a":"E","b":81},{"a":"F","b":53},{"a":"G","b":19},{"a":"H","b":87},{"a":"I","b":52}],"format":{"parse":{"b":"number"}},"transform":[{"type":"filter","test":"(d.data.b!==null)"}]}],"scales":[],"marks":[{"_name":"cell","type":"group","properties":{"enter":{"width":{"value":210},"height":{"value":200}}},"scales":[{"name":"x","type":"ordinal","domain":{"data":"raw","field":"data.a"},"sort":true,"range":[0,210],"bandWidth":21,"round":true,"nice":true,"points":true,"padding":1},{"name":"y","type":"linear","domain":{"data":"raw","field":"data.b"},"range":[200,0],"zero":true,"reverse":false,"round":true,"nice":true}],"axes":[{"type":"x","scale":"x","properties":{"labels":{"text":{"template":"{{data | truncate:25}}"},"angle":{"value":270},"align":{"value":"right"},"baseline":{"value":"middle"}},"grid":{"stroke":{"value":"#000000"},"opacity":{"value":0.08}}},"layer":"back","titleOffset":26,"grid":true,"title":"a"},{"type":"y","scale":"y","properties":{"grid":{"stroke":{"value":"#000000"},"opacity":{"value":0.08}}},"layer":"back","format":"","titleOffset":34,"grid":true,"title":"b"}],"marks":[{"type":"rect","from":{"data":"raw"},"properties":{"enter":{"xc":{"scale":"x","field":"data.a"},"width":{"value":21,"offset":-1},"y":{"scale":"y","field":"data.b"},"y2":{"group":"height"},"fill":{"value":"#4682b4"}},"update":{"xc":{"scale":"x","field":"data.a"},"width":{"value":21,"offset":-1},"y":{"scale":"y","field":"data.b"},"y2":{"group":"height"},"fill":{"value":"#4682b4"}}}}],"legends":[]}]}
+
+
+        );
+    </script>
+  </body>
+</html>
