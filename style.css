@@ -31,7 +31,11 @@ h2 {
   padding-bottom: 1rem;
 }
 
-.gist, p {
+.gist, p, object {
+  width: 70%;
+}
+
+svg {
   width: 70%;
 }
 
