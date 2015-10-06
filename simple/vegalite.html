@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+
+  <head>
+    <meta charset="utf-8">
+
+    <script src="../lib/d3.min.js"></script>
+    <script src="../lib/vega1.5.js"></script>
+    <script src="../lib/vega-lite.js"></script>
+  </head>
+
+  <body>
+    <div id="chart"></div>
+
+    <script type="text/javascript">
+      function parse(spec) {
+        vg.parse.spec(spec, function(chart) {
+          chart({el:"#chart"}).update(); });
+      }
+
+      var vlspec = {
+        "data":{
+          "values": [
+            {
+              "areas": "north",
+              "sales": 5
+            },
+            {
+              "areas": "east",
+              "sales": 25
+            },
+            {
+              "areas": "east",
+              "sales": 50,
+            },
+            {
+              "areas": "west",
+              "sales": 15
+            },
+            {
+              "areas": "south",
+              "sales": 20
+            },
+            {
+              "areas": "central",
+              "sales": 10
+            }
+          ]
+        },
+  "marktype": "bar",
+  "encoding": {
+    "x": {"type": "O","name": "areas"},
+    "y": {"type": "Q","name": "sales"}
+  },
+
+}
+      var vgspec = vl.compile(vlspec);
+      console.log(JSON.stringify(vgspec));
+      parse(vgspec);
+    </script>
+  </body>
+</html>

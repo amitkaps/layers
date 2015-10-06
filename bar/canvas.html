@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+
+<canvas id="chart" width="250" height="200"></canvas>
+
+<script>
+  var data = [5, 25, 15, 20, 10];
+  var canvas = document.getElementById("chart");
+  var ctx = canvas.getContext("2d");
+  ctx.fillStyle = "brown";
+  for (i = 0; i < data.length; i++){
+    ctx.fillRect(0,30*i,data[i]*10, 25);
+  }
+</script>

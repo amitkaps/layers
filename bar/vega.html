@@ -1,85 +1,69 @@
 <!DOCTYPE html>
 
-  <head>
-    <meta charset="utf-8">
+<script src="../lib/d3.min.js"></script>
+<script src="../lib/vega.min.js"></script>
 
-    <script src="../lib/d3.min.js"></script>
-    <script src="../lib/vega.min.js"></script>
-  </head>
+<div id="chart"></div>
 
-  <body>
-    <div id="vis"></div>
+<script>
+function parse(spec) {
+  vg.parse.spec(spec, function(chart) {
+    chart({el:"#chart"}).update(); });
+}
 
-    <script type="text/javascript">
-      function parse(spec) {
-        vg.parse.spec(spec, function(chart) {
-          chart({el:"#vis"}).update(); });
+parse(
+  {
+    "width": 250,
+    "height": 150,
+
+    "data":[
+      {
+        "name": "table",
+        "values": [
+          {"areas": "A", "value": 5},
+          {"areas": "B", "value": 25},
+          {"areas": "C", "value": 15},
+          {"areas": "D", "value": 20},
+          {"areas": "E", "value": 10}
+        ]
       }
-      parse(
-        {
-          "width": 800,
-          "height": 400,
-          "padding": {"top": 10, "left": 30, "bottom": 30, "right": 10},
+    ],
 
-          "data": [
-            {
-              "name": "table",
-              "values": [
-                {"area": "North",  "sales": 5},
-                {"area": "East",  "sales": 25},
-                {"area": "West",  "sales": 15},
-                {"area": "South",  "sales": 20},
-                {"area": "Central",  "sales": 10}
-              ]
-            }
-          ],
+    "scales": [
+      {
+        "name": "xscale",
+        "type": "linear",
+        "range": "width",
+        "domain": {"data": "table", "field": "value"},
+        "nice": true
+      },
+      {
+        "name": "yscale",
+        "type": "ordinal",
+        "range": "height",
+        "domain": {"data": "table", "field": "areas"}
+      }
+    ],
 
+    "axes": [],
 
-          "scales": [
-            {
-              "name": "xscale",
-              "type": "ordinal",
-              "range": "width",
-              "domain": {"data": "table", "field": "area"}
-            },
-            {
-              "name": "yscale",
-              "type": "linear",
-              "range": "height",
-              "domain": {"data": "table", "field": "sales"},
-              "nice": true
-            }
-          ],
-
-          "axes": [
-            {"type": "x", "scale": "xscale"},
-            {"type": "y", "scale": "yscale"}
-          ],
-
-          "marks": [
-            {
-              "type": "rect",
-              "from": {"data": "table"},
-              "properties": {
-                "enter": {
-                  "x": {"scale": "xscale", "field": "area"},
-                  "width": {"scale": "xscale", "band": true, "offset": -1},
-                  "y": {"scale": "yscale", "field": "sales"},
-                  "y2": {"scale": "yscale", "value": 0}
-                },
-                "update": {
-                  "fill": {"value": "steelblue"}
-                },
-                "hover": {
-                  "fill": {"value": "red"}
-                }
-              }
-            }
-          ]
+    "marks": [
+      {
+        "type": "rect",
+        "from": {"data": "table"},
+        "properties": {
+          "enter": {
+            "x": {"scale": "xscale", "value": 0},
+            "x2": {"scale": "xscale", "field": "value"},
+            "y": {"scale": "yscale", "field": "areas"},
+            "height": {"scale": "yscale", "band": true, "offset": -5},
+          },
+          "update": {
+            "fill": {"value": "brown"}
+          }
         }
-
-
-        );
-    </script>
-  </body>
-</html>
+      }
+    ]
+  }
+);
+</script>

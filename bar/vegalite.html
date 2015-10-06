@@ -1,40 +1,36 @@
 <!DOCTYPE html>
 
-  <head>
-    <meta charset="utf-8">
+<script src="../lib/d3.min.js"></script>
+<script src="../lib/vega1.5.js"></script>
+<script src="../lib/vega-lite.js"></script>
 
-    <script src="../lib/d3.min.js"></script>
-    <script src="../lib/vega1.5.js"></script>
-    <script src="../lib/vega-lite.js"></script>
-  </head>
+<div id="chart"></div>
 
-  <body>
-    <div id="vis"></div>
+<script type="text/javascript">
 
-    <script type="text/javascript">
-      function parse(spec) {
-        vg.parse.spec(spec, function(chart) {
-          chart({el:"#vis"}).update(); });
-      }
+function parse(spec) {
+  vg.parse.spec(spec, function(chart) {
+    chart({el:"#chart"}).update(); });
+}
 
-      var vlspec = {
-        "data": {
-          "values": [
-            {"a":"A", "b":28}, {"a":"B", "b":55}, {"a":"C", "b":43},
-            {"a":"D", "b":91}, {"a":"E", "b":81}, {"a":"F", "b":53},
-            {"a":"G", "b":19}, {"a":"H", "b":87}, {"a":"I", "b":52}
-          ]
-        },
-        "marktype": "bar",
-        "encoding": {
-          "x": {"type": "O","name": "a"},
-          "y": {"type": "Q","name": "b"}
-        }
-      };
+var vlspec = {
+  "data":{
+    "values": [
+      {"areas": "A", "value": 5},
+      {"areas": "B", "value": 25},
+      {"areas": "C", "value": 15},
+      {"areas": "D", "value": 20},
+      {"areas": "E", "value": 10}
+    ]
+  },
+  "marktype": "bar",
+  "encoding": {
+    "x": {"type": "Q","name": "value"},
+    "y": {"type": "O","name": "areas"}
+  },
+}
 
-      var vgspec = vl.compile(vlspec);
-      console.log(JSON.stringify(vgspec));
-      parse(vgspec);
-    </script>
-  </body>
-</html>
+var vgspec = vl.compile(vlspec);
+parse(vgspec);
+
+</script>

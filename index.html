@@ -10,8 +10,9 @@
 
     <!-- Custom styles for this template -->
     <link href="style.css" rel="stylesheet">
-
-    <!-- Javascript Libraries -->
+    <link rel="stylesheet" href="/lib/monokai-sublime.css">
+    <script src="/lib/highlight.pack.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
 
   </head>
 
@@ -19,35 +20,63 @@
 
     <div class="container">
       <h1>Layers of Abstraction </h1>
-      <h2>Moving up the visualisation stack </h1>
+      <h3>Moving up the visualisation stack </h3>
       <hr>
       <p> This project is to showcase the layers of abstraction that are available for making visualization for the web.</p>
 
-      <p> We will make a simple bar and scatter chart </p>
+      <p> We will make a bar chart using this simple dataset </p>
 
-      <ul>
+      <pre><code class="javascript">
+var data = [5, 25, 15, 20, 10]
+      </pre></code>
 
-<!--
-        <li><a href="http://p5js.org" target="_blank">p5.js</a>:
-            <a href="/bar/p5js">bar</a>,
-            <a href="/scatter/p5js">scatter</a>
-        </li>
--->
-        <li><a href="http://d3js.org" target="_blank">d3.js</a>:
-            <a href="bar/d3js">bar</a>,
-            <a href="scatter/d3js">scatter</a>
-        </li>
+      <h2>Using HTML &amp; CSS </h2>
+      <iframe seamless src="/bar/html.html" width="450" height="350"></iframe>
+      <div class="gist">
+        <script src="https://gist.github.com/amitkaps/a86964e07ba2ba193e11.js"></script>
+      </div>
 
-        <li><a href="http://vega.github.io/vega/" target="_blank">vega</a>:
-            <a href="bar/vega">bar</a>,
-            <a href="scatter/vega">scatter</a>
-        </li>
+      <h2>Using Javascript</h2>
+      <iframe seamless src="/bar/javascript.html" width="450" height="350"></iframe>
+      <div class="gist">
+        <script src="https://gist.github.com/amitkaps/9b1bccb42e1046ba08a2.js"></script>
+      </div>
 
-        <li><a href="http://vega.github.io/vega-lite/" target="_blank">vegalite</a>
-        </li>
+      <h2>Using Canvas &amp; Javascript</h2>
+      <iframe seamless src="/bar/canvas.html" width="450" height="350"></iframe>
+      <div class="gist">
+        <script src="https://gist.github.com/amitkaps/2fc43478056244b37d76.js"></script>
+      </div>
 
-      </ul>
+      <h2>Using d3.js &amp; HTML</h2>
+      <iframe seamless src="/bar/d3js+html.html" width="450" height="350"></iframe>
+      <div class="gist">
+        <script src="https://gist.github.com/amitkaps/0f3ca1b6b21ee64b61f5.js"></script>
+      </div>
 
+      <h2>Using SVG </h2>
+      <iframe seamless src="/bar/svg.html" width="450" height="350"></iframe>
+      <div class="gist">
+        <script src="https://gist.github.com/amitkaps/177feb6f24ba10648883.js"></script>
+      </div>
+
+      <h2>Using d3.js &amp; SVG </h2>
+      <iframe seamless src="/bar/svg.html" width="450" height="350"></iframe>
+      <div class="gist">
+        <script src="https://gist.github.com/amitkaps/6c3a2e82d84ac3e97f75.js"></script>
+      </div>
+
+      <h2>Using vega </h2>
+      <iframe seamless src="/bar/vega.html" width="450" height="350"></iframe>
+      <div class="gist">
+        <script src="https://gist.github.com/amitkaps/c6c33b099a412b53ec3b.js"></script>
+      </div>
+
+      <h2>Using vegalite </h2>
+      <iframe seamless src="/bar/vegalite.html" width="450" height="350"></iframe>
+      <div class="gist">
+        <script src="https://gist.github.com/amitkaps/3bc8cab8990d983e99bd.js"></script>
+      </div>
 
       <br>
       <h3>Play with Code</h3>

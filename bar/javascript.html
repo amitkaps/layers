@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+
+<style>
+#chart div {
+  background-color: brown;
+  height: 25px;
+  margin: 5px;
+}
+</style>
+
+<div id="chart"> </div>
+
+<script>
+  var data = [5, 25, 15, 20, 10]
+  for (i = 0; i < data.length; i++){
+    var div = document.createElement("div");
+    div.style.width = data[i]*10 + "px";
+    document.getElementById('chart').appendChild(div);
+  }
+</script>
